@@ -1,0 +1,21 @@
+
+.navbar {
+    @apply bg-blue-500 text-white p-4 shadow-md;
+  }
+  
+  .navbar-container {
+    @apply container mx-auto flex justify-between items-center;
+  }
+  
+  .navbar-logo {
+    @apply font-bold text-lg;
+  }
+  
+  .navbar-links {
+    @apply flex space-x-4;
+  }
+  
+  .navbar-link {
+    @apply hover:underline font-bold;
+  }
+  
