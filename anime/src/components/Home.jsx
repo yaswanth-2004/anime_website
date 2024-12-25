@@ -5,6 +5,7 @@ import slide3 from "../assets/slide3.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import { useState } from "react";
+import Section from "./Section";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -98,7 +99,7 @@ const Home = () => {
       setSlideDirection("left");
       setTimeout(() => {
         setStartIndex(startIndex - 1);
-      }, 300); // Delay matches the slide animation
+      }, 300); 
     }
   };
 
@@ -188,7 +189,7 @@ const Home = () => {
             ))}
           </div>
 
-          {/* Next Button */}
+          
           <button
             onClick={handleNext}
             className={`absolute right-0 z-10 p-2 rounded-full bg-pink-400 hover:bg-pink-500 ${
@@ -202,6 +203,13 @@ const Home = () => {
           </button>
         </div>
       </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-gray-900 p-8">
+      <Section id="top-airing" />
+      <Section id="most-popular" />
+      <Section id="most-favorite" />
+      <Section id="latest-completed" />
+    </div>
+      
     </div>
   );
 };
