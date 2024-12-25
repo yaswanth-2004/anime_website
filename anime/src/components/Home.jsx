@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import slide2 from "../assets/slide2.jpg";
 import slide3 from "../assets/slide3.jpg";
+import { FiArrowRight, FiArrowLeft, FiPlayCircle } from "react-icons/fi";
+import { IoIosArrowForward } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import { useState } from "react";
@@ -107,10 +109,10 @@ const Home = () => {
 
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div className="bg-gray-900 text-white min-h-screen ">
       <Navbar />
-     
-      <div >
+
+      <div>
         <Swiper
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
@@ -127,20 +129,22 @@ const Home = () => {
                   className="w-full h-[600px] object-cover"
                 />
                 <div className="absolute bottom-4 left-4 text-white bg-opacity-50 bg-black p-6 rounded right-20">
-                <h2 className="text-2xl font-bold mb-2">{slide.title}</h2>
+                  <h2 className="text-2xl font-bold mb-2">{slide.title}</h2>
                   <p className="mb-4">{slide.description}</p>
                   <div className="flex gap-4">
                     <a
                       href={slide.watchLink}
-                      className="px-6 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700"
+                      className="px-6 flex items-center py-3 bg-violet-600 text-white rounded-lg  hover:bg-violet-700"
                     >
-                      Watch Now
+                      <h1>Watch Now</h1>
+                      <FiPlayCircle className="ml-2 text-black" />
                     </a>
                     <a
                       href={slide.detailsLink}
-                      className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                      className="px-6 py-3 flex justify-center items-center bg-gray-600 text-white rounded-lg hover:bg-gray-700"
                     >
-                      Details
+                      <h1>Details</h1>
+                      <IoIosArrowForward className="ml-1" />
                     </a>
                   </div>
                 </div>
@@ -148,15 +152,11 @@ const Home = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        
       </div>
 
-      
-    
       <div className="mt-8 px-6 ml-2">
         <h2 className="text-2xl font-bold text-pink-400 mb-6">Trending</h2>
         <div className="relative flex items-center">
-         
           <button
             onClick={handlePrevious}
             className={`absolute left-0 z-10 p-2 rounded-full bg-pink-400 hover:bg-pink-500 ${
@@ -164,14 +164,14 @@ const Home = () => {
             }`}
             disabled={startIndex === 0}
           >
-            &lt;
+            <FiArrowLeft />
           </button>
 
           <div className="flex overflow-hidden space-x-10">
             {visibleAnimes.map((anime, index) => (
               <div
                 key={anime.id}
-                className="w-[200px] flex-shrink-0 bg-gray-800 rounded-lg shadow-lg relative"
+                className="w-[200px] flex-shrink-0 bg-gray-800 rounded-lg shadow-lg relative mb-10"
               >
                 <img
                   src={anime.image}
@@ -179,9 +179,11 @@ const Home = () => {
                   className="w-full h-[200px] object-cover rounded-t-lg"
                 />
                 <div className="p-4">
-                  <p className="text-sm font-semibold truncate">{anime.title}</p>
+                  <p className="text-sm font-semibold truncate">
+                    {anime.title}
+                  </p>
                 </div>
-               
+
                 <div className="absolute left-2 top-2 bg-black bg-opacity-70 text-pink-400 text-sm rounded px-2 py-1">
                   {String(startIndex + index + 1).padStart(2, "0")}
                 </div>
@@ -199,7 +201,7 @@ const Home = () => {
             }`}
             disabled={startIndex + itemsPerPage >= trendingAnimes.length}
           >
-            &gt;
+            <FiArrowRight />
           </button>
         </div>
       </div>
