@@ -4,7 +4,7 @@ import slide2 from "../assets/slide2.jpg";
 import slide3 from "../assets/slide3.jpg";
 import { FiArrowRight, FiArrowLeft, FiPlayCircle } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { FaCirclePlay } from "react-icons/fa6";import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import { useState } from "react";
 
@@ -136,7 +136,7 @@ const Home = () => {
                       className="px-6 flex items-center py-3 bg-violet-600 text-white rounded-lg  hover:bg-violet-700"
                     >
                       <h1>Watch Now</h1>
-                      <FiPlayCircle className="ml-2 text-black" />
+                      <FaCirclePlay className="ml-2 text-black" />
                     </a>
                     <a
                       href={slide.detailsLink}
