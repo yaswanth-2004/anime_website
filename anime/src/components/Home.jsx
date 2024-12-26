@@ -256,7 +256,7 @@ const Home = () => {
       <Section id="most-favorite" />
       <Section id="latest-completed" />
     </div>
-      
+      <Schedule/>
     </div>
   );
 };
