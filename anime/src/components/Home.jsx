@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import { useState } from "react";
 import Section from "./Section";
+import Schedule from "./Schedule";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -211,7 +212,7 @@ const Home = () => {
       <Section id="most-favorite" />
       <Section id="latest-completed" />
     </div>
-      
+    <Schedule/>
     </div>
   );
 };
