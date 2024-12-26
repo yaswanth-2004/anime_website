@@ -12,6 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route element={<Home/>} path='/home'/>
+          <Route element={<Home/>} path='/'/>
         </Routes>
       </Router>
     </div>

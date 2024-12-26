@@ -4,9 +4,10 @@ import slide2 from "../assets/slide2.jpg";
 import slide3 from "../assets/slide3.jpg";
 import { FiArrowRight, FiArrowLeft, FiPlayCircle } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
+import { FaCirclePlay } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Section from "./Section";
 import Schedule from "./Schedule";
 
@@ -19,7 +20,8 @@ const Home = () => {
     {
       image: slide3,
       title: "Bleach",
-      description: "Ichigo Kurosaki is an ordinary high schooler—until his family is attacked by a Hollow, a corrupt spirit that seeks to devour human souls. It is then that he meets a Soul Reaper named Rukia Kuchiki, who gets injured while protecting Ichigo's family from th..",
+      description:
+        "Ichigo Kurosaki is an ordinary high schooler—until his family is attacked by a Hollow, a corrupt spirit that seeks to devour human souls. It is then that he meets a Soul Reaper named Rukia Kuchiki, who gets injured while protecting Ichigo's family from th..",
       watchLink: "#",
       detailsLink: "#",
     },
@@ -83,10 +85,24 @@ const Home = () => {
       detailsLink: "#",
     },
   ];
+
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 6;
-  const [slideDirection, setSlideDirection] = useState(""); 
+  const [slideDirection, setSlideDirection] = useState("");
 
+  const swiperRef = useRef(null);
+
+  const handlePrevbtn = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const handleNextbtn = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext(); 
+    }
+  };
 
   const handleNext = () => {
     if (startIndex + itemsPerPage < trendingAnimes.length) {
@@ -102,19 +118,22 @@ const Home = () => {
       setSlideDirection("left");
       setTimeout(() => {
         setStartIndex(startIndex - 1);
-      }, 300); 
+      }, 300);
     }
   };
 
-  const visibleAnimes = trendingAnimes.slice(startIndex, startIndex + itemsPerPage);
-
+  const visibleAnimes = trendingAnimes.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   return (
     <div className="bg-gray-900 text-white min-h-screen ">
       <Navbar />
 
-      <div>
+      <div className="relative">
         <Swiper
+          ref={swiperRef} // Attaching Swiper reference
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
           navigation
@@ -123,22 +142,22 @@ const Home = () => {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <div className="relative w-full">
+              <div className="w-full flex">
                 <img
                   src={slide.image}
                   alt={`Slide ${index + 1}`}
                   className="w-full h-[600px] object-cover"
                 />
-                <div className="absolute bottom-4 left-4 text-white bg-opacity-50 bg-black p-6 rounded right-20">
+                <div className="absolute bottom-4 left-4 text-white bg-opacity-50 bg-black p-6 right-20 backdrop-blur-sm rounded-lg">
                   <h2 className="text-2xl font-bold mb-2">{slide.title}</h2>
                   <p className="mb-4">{slide.description}</p>
                   <div className="flex gap-4">
                     <a
                       href={slide.watchLink}
-                      className="px-6 flex items-center py-3 bg-violet-600 text-white rounded-lg  hover:bg-violet-700"
+                      className="px-6 flex items-center py-3 bg-blue-400 text-black rounded-lg hover:bg-blue-500"
                     >
                       <h1>Watch Now</h1>
-                      <FiPlayCircle className="ml-2 text-black" />
+                      <FaCirclePlay className="ml-2 text-black" />
                     </a>
                     <a
                       href={slide.detailsLink}
@@ -149,6 +168,32 @@ const Home = () => {
                     </a>
                   </div>
                 </div>
+
+                <div>
+                  <div
+                    onClick={handlePrevbtn}
+                    className="absolute bottom-5 right-4 text-white bg-opacity-50 bg-black p-4 rounded-lg flex justify-center items-center"
+                  >
+                    <button>
+                      <FiArrowLeft />
+                    </button>
+                  </div>
+
+                  <div
+                    onClick={handleNextbtn}
+                    className="absolute right-4 bottom-20 text-white bg-opacity-50 bg-black p-4 rounded-lg flex jusitfy-center items-center"
+                  >
+                    <button>
+                      <FiArrowRight />
+                    </button>
+                  </div>
+                </div>
+                <style jsx>{`
+                  .swiper-button-next,
+                  .swiper-button-prev {
+                    display: none !important;
+                  }
+                `}</style>
               </div>
             </SwiperSlide>
           ))}
@@ -192,7 +237,6 @@ const Home = () => {
             ))}
           </div>
 
-          
           <button
             onClick={handleNext}
             className={`absolute right-0 z-10 p-2 rounded-full bg-pink-400 hover:bg-pink-500 ${
@@ -212,7 +256,7 @@ const Home = () => {
       <Section id="most-favorite" />
       <Section id="latest-completed" />
     </div>
-    <Schedule/>
+      
     </div>
   );
 };

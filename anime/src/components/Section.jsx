@@ -63,10 +63,10 @@ const  Section=({ id })=> {
             <img src={item.image} alt={item.name} className="w-16 h-25 rounded-lg mr-4" />
             <div>
               <h3 className="text-white text-lg font-semibold mb-2">{item.name}</h3>
-              <div className="text-sm text-white space-y-1">
-                <p>Episodes: <span className="text-white">{item.episodes}</span></p>
-                <p>Popularity: <span className="text-white">{item.popularity}</span></p>
-                <p>Type: <span className="text-white">{item.type}</span></p>
+              <div className="text-sm text-gray-200 space-y-1">
+                <p>Episodes: <span className="text-gray-200">{item.episodes}</span></p>
+                <p>Popularity: <span className="text-gray-200">{item.popularity}</span></p>
+                <p>Type: <span className="text-gray-200">{item.type}</span></p>
               </div>
             </div>
           </div>
