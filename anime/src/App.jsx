@@ -2,7 +2,7 @@
 import './App.css'
 import { BrowserRouter as  Router,Routes,Route } from 'react-router-dom'
 import Home from './components/Home'
-import Navbar from './components/Navbar'
+import Watchnow from './components/Watchnow'
 
 function App() {
   
@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route element={<Home/>} path='/home'/>
           <Route element={<Home/>} path='/'/>
+          <Route element={<Watchnow/>} path='/watch'/>
         </Routes>
       </Router>
     </div>
